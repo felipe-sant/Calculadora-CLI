@@ -5,7 +5,7 @@ export default class Menu {
 
     public mostrar(): void {
         const linha = this.repetirString("--", 20);
-        const separador = this.repetirString("=", 20);
+        const separador = this.repetirString("==", 20);
         
         console.log(linha);
         console.log("Bem-vindo à minha calculadora!");

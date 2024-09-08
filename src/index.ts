@@ -13,30 +13,28 @@ const menu: Menu = new Menu()
 let executando: boolean = true
 let opcao: string
 
+function executarCalculo(calculo: (n1: number, n2: number) => number): void {
+    const calculoRealizado: Calculo = new Calculo(calculo)
+    calculoRealizado.processar()
+    entrada.aguardarEnter()
+}
+
 while (executando) {
     limparTerminal()
     menu.mostrar()
     opcao = entrada.receberTexto("Digite sua opcao:")
     switch (opcao) {
         case "1":
-            const calculoSoma: Calculo = new Calculo(somar)
-            calculoSoma.processar()
-            entrada.aguardarEnter()
+            executarCalculo(somar)
             break
         case "2":
-            const calculoSubtracao: Calculo = new Calculo(subtrair)
-            calculoSubtracao.processar()
-            entrada.aguardarEnter()
+            executarCalculo(subtrair)
             break
         case "3":
-            const calculoMultiplicacao: Calculo = new Calculo(multiplicar)
-            calculoMultiplicacao.processar()
-            entrada.aguardarEnter()
+            executarCalculo(multiplicar)
             break
         case "4":
-            const calculoDivisao: Calculo = new Calculo(dividir)
-            calculoDivisao.processar()
-            entrada.aguardarEnter()
+            executarCalculo(dividir)
             break
         case "0":
             executando = false
