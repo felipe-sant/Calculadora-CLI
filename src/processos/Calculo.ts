@@ -1,10 +1,11 @@
 import Entrada from "../io/Entrada";
+import Operacao from "../tipos/Operacao";
 
 export default class Calculo {
-    private calculo: (n1: number, n2: number) => number;
+    private calculo: Operacao;
     private entrada: Entrada = new Entrada();
 
-    constructor(calculo: (n1: number, n2: number) => number) {
+    constructor(calculo: Operacao) {
         this.calculo = calculo;
     }
 

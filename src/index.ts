@@ -3,8 +3,9 @@ import multiplicar from "./funcoes/multiplicar";
 import somar from "./funcoes/somar";
 import subtrair from "./funcoes/subtrair";
 import Entrada from "./io/Entrada";
-import Menu from "./menus/menuPrincipal";
+import Menu from "./menus/Menu";
 import Calculo from "./processos/Calculo";
+import Operacao from "./tipos/Operacao";
 import limparTerminal from "./utilitarios/limparTerminal";
 
 const entrada: Entrada = new Entrada()
@@ -13,7 +14,7 @@ const menu: Menu = new Menu()
 let executando: boolean = true
 let opcao: string
 
-function executarCalculo(calculo: (n1: number, n2: number) => number): void {
+function executarCalculo(calculo: Operacao): void {
     const calculoRealizado: Calculo = new Calculo(calculo)
     calculoRealizado.processar()
     entrada.aguardarEnter()
