@@ -1,20 +1,19 @@
-import Entrada from "../io/Entrada"
+import Entrada from "../io/Entrada";
 
 export default class Calculo {
-    private calculo: Function
-    private n1?: number
-    private n2?: number
-    private resultado?: number
-    private entrada: Entrada = new Entrada()
+    private calculo: (n1: number, n2: number) => number;
+    private entrada: Entrada = new Entrada();
 
-    constructor(calculo: Function) {
-        this.calculo = calculo
+    constructor(calculo: (n1: number, n2: number) => number) {
+        this.calculo = calculo;
     }
 
-    public processar() {
-        this.n1 = this.entrada.receberNumero("Digite o primeiro número:")
-        this.n2 = this.entrada.receberNumero("Digite o segundo número:")
-        this.resultado = this.calculo(this.n1, this.n2)
-        console.log(`\nSeu resultado ${this.resultado}\n`)
+    public processar(): void {
+        const n1 = this.entrada.receberNumero("Digite o primeiro número:");
+        const n2 = this.entrada.receberNumero("Digite o segundo número:");
+        const resultado = this.calculo(n1, n2);
+        console.log(`\nSeu resultado: ${resultado}\n`);
     }
 }
+
+// Path: src/processos/Calculo.ts

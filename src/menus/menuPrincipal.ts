@@ -18,3 +18,5 @@ export default class Menu {
         console.log(separador);
     }
 }
+
+// Path: src/menus/menuPrincipal.ts

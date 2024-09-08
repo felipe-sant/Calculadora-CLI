@@ -42,3 +42,5 @@ export default class Entrada {
         this.prompt('Pressione ENTER para continuar...');
     }
 }
+
+// Path: src/io/Entrada.ts
