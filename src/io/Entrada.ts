@@ -1,33 +1,44 @@
 import promptSync from "prompt-sync";
 
 export default class Entrada {
+    private prompt: promptSync.Prompt;
+
+    constructor() {
+        this.prompt = promptSync();
+    }
+
     public receberNumero(mensagem: string): number {
-        let prompt = promptSync();
-        let valor = prompt(`${mensagem} `)
-        let numero = new Number(valor)
-        if (Number.isNaN(numero.valueOf())) throw new TypeError("Não é um número")
-        return numero.valueOf()
+        const valor = this.prompt(`${mensagem} `);
+        const numero = parseFloat(valor);
+        if (isNaN(numero)) {
+            throw new TypeError("Entrada inválida: não é um número");
+        }
+        return numero;
     }
+
     public receberTexto(mensagem: string): string {
-        let prompt = promptSync();
-        let texto = prompt(`${mensagem} `)
-        return texto
+        return this.prompt(`${mensagem} `);
     }
+
     public receberData(mensagem: string): Date {
-        let prompt = promptSync();
-        let texto = prompt(`${mensagem}, no padrão dd/MM/yyyy: `)
-        let partes = texto.split('/')
-        let ano = new Number(partes[2])
-        let mes = new Number(partes[1])
-        let dia = new Number(partes[0])
-        let data = new Date(ano.valueOf(), mes.valueOf() - 1, dia.valueOf())
-        if (data.toString() === "Invalid Date") throw new TypeError("Data inválida")
-        return data
+        const texto = this.prompt(`${mensagem}, no padrão dd/MM/yyyy: `);
+        const partes = texto.split('/');
+        if (partes.length !== 3) {
+            throw new TypeError("Formato de data inválido. Use o formato dd/MM/yyyy.");
+        }
+
+        const dia = parseInt(partes[0], 10);
+        const mes = parseInt(partes[1], 10) - 1; // Meses começam em 0 no JavaScript
+        const ano = parseInt(partes[2], 10);
+
+        const data = new Date(ano, mes, dia);
+        if (isNaN(data.getTime())) {
+            throw new TypeError("Data inválida");
+        }
+        return data;
     }
+
     public aguardarEnter(): void {
-        let prompt = promptSync();
-        prompt('Pressione ENTER para continuar...')
+        this.prompt('Pressione ENTER para continuar...');
     }
 }
-
-// Path: src/io/Saida.ts
